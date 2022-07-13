@@ -1,5 +1,5 @@
-import "./App.scss";
-// import { Container } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import NavBar from "./components/Commons/NavBar";
 
 function App() {
