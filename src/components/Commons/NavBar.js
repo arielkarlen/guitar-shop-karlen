@@ -2,12 +2,16 @@ import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import Logo from "../../assets/logo.svg";
+import CartWidget from "../CartWidget/CartWidget";
 
 const NavBar = () => {
   return (
     <Navbar expand="lg">
       <Container>
-        <Navbar.Brand href="#home">Guitar Shop</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <img src={Logo} className="img-fluid" />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -51,7 +55,7 @@ const NavBar = () => {
               <FontAwesomeIcon icon={faUser} />
             </Nav.Link>
             <Nav.Link href="/">
-              <FontAwesomeIcon icon={faCartShopping} />
+              <CartWidget />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

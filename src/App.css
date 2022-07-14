@@ -17,13 +17,41 @@ body {
 h1 {
   font-size: 24px;
   text-align: center;
+  margin:30px 0
 }
 
+/**Buttons**/
+
+.btn {
+  border-radius: 2px;
+  text-transform: capitalize;
+  font-size: 15px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+.btn-primary {
+  background-color: #4099ff;
+  border-color: #4099ff;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: all ease-in .3s;
+  transition: all ease-in .3s;
+  margin: 20px 0 0 0;
+}
+
+.btn-primary:hover {
+  background-color: #73b4ff;
+  border-color: #73b4ff;
+}
 
 /**Header**/
 nav{
   background-color: var(--color-main);
   color:#fff
+}
+
+.navbar-brand img {
+ width: 280px;
 }
 
 #basic-navbar-nav {
