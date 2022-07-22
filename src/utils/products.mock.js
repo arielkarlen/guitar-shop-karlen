@@ -52,7 +52,7 @@ const products = [
     title: "CHARVEL BASS EM-3B JAPAN 80S",
     price: 59806,
     description:
-      "Charvel Bass EM-3B Japan 80s. Numero de serie C117167. Made in Japan.  Incluye funda de lona.",
+      "Charvel Bass EM-3B Japan 80. Numero de serie C117167. Made in Japan.  Incluye funda de lona.",
     image: "Charvel-Bass.jpg",
     stock: 2,
   },
