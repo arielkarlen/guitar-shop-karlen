@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
 import NavBar from "./components/Commons/NavBar";
-import ItemContainer from "./components/itemContainer/itemContainer";
+import ItemContainer from "./components/itemContainer/ItemContainer";
 
 function App() {
   return (
