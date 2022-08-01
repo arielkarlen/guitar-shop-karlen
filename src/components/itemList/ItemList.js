@@ -1,16 +1,42 @@
 import ItemProduct from "../itemProduct/ItemProduct";
-const handleSubmit = () => {
-  alert("Producto añadido al carrito");
-};
+import { useLocation } from "react-router-dom";
 
-const ItemList = ({ dataProducts }) => {
+const ItemList = ({ dataProducts, category }) => {
+  const location = useLocation();
+  console.log(location.pathname);
   return (
     <>
-      {dataProducts.map((product) => {
-        return (
-          <ItemProduct key={product.id} data={product} action={handleSubmit} />
-        );
-      })}
+      {(() => {
+        if (location.pathname == "/") {
+          return (
+            <>
+              {dataProducts.map((product) => {
+                return (
+                  <>
+                    <ItemProduct key={product.id} data={product} />
+                  </>
+                );
+              })}
+            </>
+          );
+        } else {
+          return (
+            <>
+              {dataProducts.map((product) => {
+                return (
+                  <>
+                    {product.category == category ? (
+                      <ItemProduct key={product.id} data={product} />
+                    ) : (
+                      ""
+                    )}
+                  </>
+                );
+              })}
+            </>
+          );
+        }
+      })()}
     </>
   );
 };
