@@ -3,7 +3,8 @@
 :root {
   
 
-  --color-main:#af4417;
+--color-main:#af4417;
+--color-green:#2b7202;
 --main-font: 'Quicksand', sans-serif;
   
 }
@@ -29,7 +30,9 @@ h3 {
 }
 
 h4 {
-  margin:20px 0
+  margin:20px 0;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 h5 {
@@ -50,15 +53,42 @@ h5 {
   border-color: #4099ff;
   color: #fff;
   cursor: pointer;
-  -webkit-transition: all ease-in .3s;
   transition: all ease-in .3s;
-  margin: 20px 0 0 0;
   width: 100%;
+  margin: 20px 0 0 0;
 }
 
 .btn-primary:hover {
   background-color: #73b4ff;
   border-color: #73b4ff;
+}
+
+.add {
+  margin: 5px 0;
+  background-color: var(--color-green);
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.add p {
+ color: #fff;
+  font-weight: bold;
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+}
+
+svg.svg-inline--fa.fa-check {
+width: 16px;
+  color: #fff;
+ 
+}
+
+p.alertStock {
+  font-size: 11px;
+  font-weight: bold;
+  color: #8a0000;
 }
 
 /**Header**/
@@ -88,21 +118,35 @@ nav a, .navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
 
 .card {
   border-radius: 5px;
-  
   border: none;
   margin-bottom: 30px;
   transition: all .3s ease-in-out;
+min-height:540px ;
 }
 
 .card:hover {
   -webkit-box-shadow: 0 0 5px 0 rgb(43 43 43 / 10%), 0 11px 6px -7px rgb(43 43 43 / 10%);
   box-shadow: 0 0 5px 0 rgb(43 43 43 / 10%), 0 11px 6px -7px rgb(43 43 43 / 10%);
   transition: all .3s ease-in-out;
+ 
 }
 
-#itemContainer .card {
-  min-height: 650px;
+.card-title {
+  font-size: 13px;
+  font-weight: bold;
 }
+
+.card a {
+  color: var(--color-main);
+  text-decoration: none;
+}
+
+.card a:hover {
+  color: #000;
+  
+}
+
+
 /**Products**/
 
 
@@ -117,4 +161,11 @@ nav a, .navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
   font-size: 20px;
   font-weight: 700;
   background-color: #e3e3e3;
+}
+
+@media screen and (width: 1920px) {
+  .card {
+   
+    min-height: 570px;
+}
 }

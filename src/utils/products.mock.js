@@ -7,6 +7,7 @@ const products = [
       "Burny by Fernandes Firebird Japan 90s. Rojo (repintado)  Modelo FB-75Z  ZIGGY “Munehito Matsuo” Signature. Funda de lona opciona",
     image: "firebird.jpg",
     stock: 10,
+    category: "Guitarras",
   },
 
   {
@@ -17,6 +18,7 @@ const products = [
       "Fender Aerodyne Telecaster Japan 2004. Limited Edition . Numero de serie R073207. Incluye funda de lona",
     image: "Fender.jpg",
     stock: 5,
+    category: "Guitarras",
   },
 
   {
@@ -27,6 +29,7 @@ const products = [
       "Rickenbacker 620 Fireglo 2003 Numero de serie 03 10113 . Made in USA. Incluye estuche original.",
     image: "Rickenbacker.jpg",
     stock: 3,
+    category: "Guitarras",
   },
 
   {
@@ -37,6 +40,7 @@ const products = [
       "Ibanez George Benson Japan GB10 1982. Brown Sunburst. Numero de serie A824824. Incluye estuche.",
     image: "Ibanez.jpg",
     stock: 7,
+    category: "Guitarras",
   },
   {
     id: "5",
@@ -46,6 +50,7 @@ const products = [
       "Greco Flying V MTV-60 Japan 1984 Numero de serie K845975. Made in Japan. Incluye funda de lona.",
     image: "Greco-Flying.jpg",
     stock: 1,
+    category: "Guitarras",
   },
   {
     id: "6",
@@ -55,6 +60,7 @@ const products = [
       "Charvel Bass EM-3B Japan 80. Numero de serie C117167. Made in Japan.  Incluye funda de lona.",
     image: "Charvel-Bass.jpg",
     stock: 2,
+    category: "Bajos",
   },
   {
     id: "7",
@@ -64,6 +70,7 @@ const products = [
       "Charvel Bass EM-3B 80s. Numero de serie C113420. Made in Japan.  Incluye funda de lona.",
     image: "charvel-precision.jpg",
     stock: 4,
+    category: "Bajos",
   },
   {
     id: "8",
@@ -73,6 +80,17 @@ const products = [
       "Edwards by ESP E-CL-90 Eclipse Sugizo Signature. Guitarrista de Luna Sea. Incluye funda de lona.",
     image: "Edwards.jpg",
     stock: 5,
+    category: "Guitarras",
+  },
+  {
+    id: "9",
+    title: "EDWARDS BY ESP E-CL-90 ECLIPSE SUGIZO SIGNATURE",
+    price: 127369,
+    description:
+      "Fender Jazz Bass Japan JBR-80R 1993. Activo. Numero de serie MIJ  O016453. Año 1993-1994. Incluye funda de lona.",
+    image: "Fender-Jazz-Bass.jpg",
+    stock: 2,
+    category: "Bajos",
   },
 ];
 

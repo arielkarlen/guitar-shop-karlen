@@ -1,70 +1,51 @@
 # Guitar Shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Autor: Ariel A. Karlen.
+Proyecto de tienda Virtual creado en React, para curso de React de Coderhouse.
+Framework Frontend: Bootstrap
 
-## Available Scripts
+## Scripts
 
-In the project directory, you can run:
+Scripts para levantar el proyecto en modo:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Levbanta la APP en Modo develop
+URL [http://localhost:3000](http://localhost:3000) .
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `Api`
 
-### `npm test`
+De momento, se esta tomando singleProduct.mock.js para tomar los productos, ubicado en la carpeta src/utils
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Componentes
 
-### `npm run build`
+### `CartWidget`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Componente ded carrito de compras
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `ItemContainer`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contenedor de productos, para mostrar segun categoria
 
-### `npm run eject`
+### `ItemList`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Muestra todos los productos, segun la categoria que se le pase.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `ItemProduct`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Muestra detalle resumido de producto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### `ItemDetail`
 
-## Learn More
+Detalle completo del producto
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `ItemDetailContainer`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Contenedor del Detalle completo del producto
 
-### Code Splitting
+### `Commons`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Componentes comunues de todo el proyecto, incluye\_
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Barra de navegacion
+- Contador para agregar o eliminar productos

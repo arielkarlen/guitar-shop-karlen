@@ -1,38 +1,27 @@
 import { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
 
-import singleProduct from "../../utils/singleProduct.mock";
 import Itemdetail from "../Itemdetail/Itemdetail";
+import products from "../../utils/products.mock";
+import { useParams } from "react-router-dom";
 
-import Loader from "../loader/Loader";
-
-const ItemDetailContainer = ({ titleSection }) => {
-  const [product, setProduct] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const getProduct = new Promise((resolve, reject) => {
-    resolve(singleProduct);
-  });
+const ItemDetailContainer = () => {
+  const [productData, setProductData] = useState({});
+  const { id } = useParams();
 
   useEffect(() => {
-    getProduct
-      .then((res) => {
-        setTimeout(function () {
-          setProduct(res);
-          setIsLoading(false);
-        }, 2000);
-      })
-
-      .catch((error) => {
-        console.log("Error");
-      });
-  }, []);
+    products.some((product) => {
+      if (product.id == id) {
+        setProductData(product);
+      }
+    });
+  });
 
   return (
     <>
       <Container id="itemContainer">
         <Row>
-          {isLoading ? <Loader /> : <Itemdetail dataSingleProduct={product} />}
+          <Itemdetail productData={productData} />
         </Row>
       </Container>
     </>

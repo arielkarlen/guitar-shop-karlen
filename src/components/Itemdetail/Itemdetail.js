@@ -1,29 +1,47 @@
+import { useState } from "react";
 import { Row, Col, Container, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Itemcount from "../Commons/ItemCount";
 import "./itemDetail.css";
 
-const handleSubmit = () => {
-  alert("Producto añadido al carrito");
-};
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Itemdetail = ({ dataSingleProduct }) => {
-  const { title, image, price, description, stock } = dataSingleProduct;
-  console.log(dataSingleProduct);
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+const Itemdetail = ({ productData }) => {
+  const [message, setMessage] = useState("");
+
+  const { title, image, price, stock, id, description, category } = productData;
+  const handleSubmit = () => {
+    setMessage(
+      <div className="add">
+        <p>
+          <FontAwesomeIcon icon={faCheck} /> Añadido al carrito
+        </p>
+      </div>
+    );
+  };
+
   return (
     <Container>
       <Card id="itemdetail">
         <Row>
           <Col>
-            <img src={`assets/${image}`} />
+            <img src={`../assets/${image}`} className="img-fluid" />
           </Col>
           <Col>
+            {message}
             <h2>{title}</h2>
             <h3>
-              <strong>Precio:</strong> ${price}{" "}
+              <strong>Precio:</strong> {price}
             </h3>
             <h5>
               <strong>Stock: </strong>
               {stock}
+            </h5>
+            <h5>
+              <strong>Categoria: </strong>
+              <Link to={`/category/${category}`}>{category}</Link>
             </h5>
             <div className="singledescription">
               <p>{description}</p>
