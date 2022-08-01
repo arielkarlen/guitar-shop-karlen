@@ -1,4 +1,4 @@
-import ItemProduct from "../itemProduct/ItemProduct";
+import ItemProduct from "../itemProduct/itemProduct";
 import { useLocation } from "react-router-dom";
 
 const ItemList = ({ dataProducts, category }) => {
