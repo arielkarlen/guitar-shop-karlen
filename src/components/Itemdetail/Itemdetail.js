@@ -1,36 +1,24 @@
 import { useState } from "react";
-import { Row, Col, Container, Card, Button } from "react-bootstrap";
+import { Row, Col, Container, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Itemcount from "../Commons/ItemCount";
 import "./itemDetail.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Itemdetail = ({ productData }) => {
-  const [message, setMessage] = useState("");
-
-  const { title, image, price, stock, id, description, category } = productData;
-  const handleSubmit = () => {
-    setMessage(
-      <div className="add">
-        <p>
-          <FontAwesomeIcon icon={faCheck} /> Añadido al carrito
-        </p>
-      </div>
-    );
-  };
+  const { title, image, price, stock, description, category } = productData;
+  const [quantitySelected, setQuantitySelected] = useState(0);
 
   return (
     <Container>
       <Card id="itemdetail">
         <Row>
           <Col>
-            <img src={`../assets/${image}`} className="img-fluid" />
+            <img src={`../assets/${image}`} className="img-fluid" alt={title} />
           </Col>
           <Col>
-            {message}
             <h2>{title}</h2>
             <h3>
               <strong>Precio:</strong> {price}
@@ -48,11 +36,24 @@ const Itemdetail = ({ productData }) => {
             </div>
             <Row className="btnsBuy">
               <Col md={6}>
-                {" "}
-                <Itemcount stock={stock} initial={0} />
-                <Button variant="primary" onClick={handleSubmit}>
-                  Comprar
-                </Button>
+                {quantitySelected < 1 ? (
+                  <Itemcount
+                    stock={stock}
+                    initial={0}
+                    setQuantitySelected={setQuantitySelected}
+                  />
+                ) : (
+                  <>
+                    <div className="add">
+                      <p>
+                        <FontAwesomeIcon icon={faCheck} /> Añadido al carrito
+                      </p>
+                    </div>
+                    <Link to="/cart" className="btn btn-primary">
+                      Terminar Compra
+                    </Link>
+                  </>
+                )}
               </Col>
             </Row>
           </Col>

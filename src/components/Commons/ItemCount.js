@@ -3,19 +3,27 @@ import { Button } from "react-bootstrap";
 
 import "./ItemCount.css";
 
-const Itemcount = ({ stock, initial }) => {
+const Itemcount = ({ stock, initial, setQuantitySelected }) => {
   const [itemQty, setItemQty] = useState(initial);
   const [alert, setAlert] = useState("");
+  const [disabled, setDisabled] = useState(true);
+
   const addItem = () => {
     itemQty >= stock
       ? setAlert(`Stock Maximo: ${itemQty} Productos`)
       : setItemQty(itemQty + 1);
+    setDisabled(false);
   };
 
   const removeItem = () => {
     itemQty <= 0
       ? setAlert("Debe agregar al menos 1 producto")
       : setItemQty(itemQty - 1);
+    itemQty == 0 ? setDisabled(true) : setDisabled(false);
+  };
+
+  const onAdd = () => {
+    setQuantitySelected(itemQty);
   };
 
   return (
@@ -32,6 +40,9 @@ const Itemcount = ({ stock, initial }) => {
           +
         </Button>
       </div>
+      <Button disabled={disabled} variant="primary" onClick={onAdd}>
+        Añadir al carrito
+      </Button>
     </>
   );
 };
