@@ -1,30 +1,18 @@
 import { useState } from "react";
-import { Card, Button, Col } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import Itemcount from "../Commons/ItemCount";
 import { Link } from "react-router-dom";
 import "./ItemProduct.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const ItemProduct = ({ data, action }) => {
   const { title, image, price, stock, id } = data;
-  const [message, setMessage] = useState("");
-  const handleSubmit = () => {
-    setMessage(
-      <div className="add">
-        <p>
-          <FontAwesomeIcon icon={faCheck} /> Añadido al carrito
-        </p>
-      </div>
-    );
-  };
+  const [quantitySelected, setQuantitySelected] = useState(0);
 
   return (
     <Col lg={3}>
       <Card>
-        {message}
         <Link to={`/guitars/${id}`}>
           <Card.Img variant="top" src={`../assets/${image}`} />
         </Link>
@@ -37,11 +25,24 @@ const ItemProduct = ({ data, action }) => {
           <h5>Stock: {stock}</h5>
 
           <div className="buy">
-            <Itemcount stock={stock} initial={0} />
-
-            <Button variant="primary" onClick={handleSubmit}>
-              Comprar
-            </Button>
+            {quantitySelected < 1 ? (
+              <Itemcount
+                stock={stock}
+                initial={0}
+                setQuantitySelected={setQuantitySelected}
+              />
+            ) : (
+              <>
+                <div className="add">
+                  <p>
+                    <FontAwesomeIcon icon={faCheck} /> Añadido al carrito
+                  </p>
+                </div>
+                <Link to="/cart" className="btn btn-primary">
+                  Terminar Compra
+                </Link>
+              </>
+            )}
           </div>
         </Card.Body>
       </Card>
