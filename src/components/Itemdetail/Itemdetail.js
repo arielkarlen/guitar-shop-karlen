@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Row, Col, Container, Card } from "react-bootstrap";
+import { Row, Col, Container, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Itemcount from "../Commons/ItemCount";
 import "./itemDetail.css";
@@ -41,6 +41,7 @@ const Itemdetail = ({ productData }) => {
                     stock={stock}
                     initial={0}
                     setQuantitySelected={setQuantitySelected}
+                    productData={productData}
                   />
                 ) : (
                   <>

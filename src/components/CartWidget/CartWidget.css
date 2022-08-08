@@ -1,0 +1,32 @@
+.itemCart {
+    border-bottom: 1px dashed #e3e3e3;
+    padding: 25px 0;
+}
+
+.cartContent {
+    padding: 0 0 50px 0;
+}
+
+.itemCart p {
+    margin-bottom: 0;
+}
+
+#btnsCartCheckout {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: #e3e3e3;
+    padding: 0px 0 20px 0;
+    margin: 0;
+}
+
+.deleteItem {
+    font-size: 11px;
+    font-weight: bold;
+    color: #7e0000;
+    text-decoration: none;
+}
+
+.deleteItem:hover {
+    cursor: pointer;
+}

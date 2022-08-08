@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 const ItemList = ({ dataProducts, category }) => {
   const location = useLocation();
-  console.log(location.pathname);
+
   return (
     <>
       {(() => {
@@ -13,7 +13,11 @@ const ItemList = ({ dataProducts, category }) => {
               {dataProducts.map((product) => {
                 return (
                   <>
-                    <ItemProduct key={product.id} data={product} />
+                    <ItemProduct
+                      key={product.id}
+                      data={product}
+                      productData={product}
+                    />
                   </>
                 );
               })}

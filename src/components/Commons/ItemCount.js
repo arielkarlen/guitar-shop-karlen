@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Button } from "react-bootstrap";
-
+import { CartContext } from "../../context/CartContext";
 import "./ItemCount.css";
 
-const Itemcount = ({ stock, initial, setQuantitySelected }) => {
+const Itemcount = ({ stock, initial, setQuantitySelected, productData }) => {
+  const { addProductToCart } = useContext(CartContext);
+  const { addQty } = useContext(CartContext);
+
   const [itemQty, setItemQty] = useState(initial);
   const [alert, setAlert] = useState("");
   const [disabled, setDisabled] = useState(true);
@@ -24,6 +27,7 @@ const Itemcount = ({ stock, initial, setQuantitySelected }) => {
 
   const onAdd = () => {
     setQuantitySelected(itemQty);
+    addProductToCart(productData, itemQty);
   };
 
   return (
