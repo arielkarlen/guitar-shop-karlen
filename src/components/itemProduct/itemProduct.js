@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Card, Col } from "react-bootstrap";
+import { useState, useContext } from "react";
+import { Card, Col, Button } from "react-bootstrap";
 import Itemcount from "../Commons/ItemCount";
 import { Link } from "react-router-dom";
 import "./ItemProduct.css";
@@ -30,6 +30,7 @@ const ItemProduct = ({ data, action }) => {
                 stock={stock}
                 initial={0}
                 setQuantitySelected={setQuantitySelected}
+                productData={data}
               />
             ) : (
               <>
