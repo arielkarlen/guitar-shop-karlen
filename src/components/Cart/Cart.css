@@ -3,6 +3,10 @@
     padding: 50px;
 }
 
+#myCart .btn-primary {
+    margin: 0;
+}
+
 .myCartItem {
     border-bottom: 1px dashed #e3e3e3;
     padding: 20px 0px;
@@ -15,4 +19,10 @@
 #checkout h2 {
     font-size: 18px;
     font-weight: bold;
+}
+
+.iconCart.text-center {
+    color: #ebebeb;
+    font-size: 180px;
+    margin-top: 70px;
 }

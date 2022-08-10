@@ -3,7 +3,11 @@ import { Row, Col, Button, Card, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CartContext } from "../../context/CartContext";
 import "./Cart.css";
-import { faTrashCan, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faMoneyBill,
+  faCartShopping,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 const MyCart = () => {
   const {
@@ -29,7 +33,18 @@ const MyCart = () => {
         <Card id="myCart">
           <Row>
             <Col lg={7}>
-              {cartProducts.length == 0 ? "No hay productos en el carrito" : ""}
+              {cartProducts.length == 0 ? (
+                <>
+                  <h2 className="text-center">
+                    No hay productos en el carrito
+                  </h2>
+                  <div className="iconCart text-center">
+                    <FontAwesomeIcon icon={faCartShopping} />
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
               {cartProducts.map((product, index) => {
                 return (
                   <>
@@ -58,6 +73,7 @@ const MyCart = () => {
                             cartProducts.splice(index, 1);
                             setReload(true);
                             setTotalProduct(totalProduct - product.Qty);
+                            setTotalAmount(totalAmount - product.PartialAmount);
                           }}
                           onMouseUp={() => {
                             setReload(false);
@@ -74,10 +90,18 @@ const MyCart = () => {
               })}
             </Col>
             <Col lg={{ span: 3, offset: 2 }} id="checkout">
-              <h2>Total: ${totalAmount}</h2>
-              <Link to="/cart" className="btn btn-primary btnCheckout">
-                <FontAwesomeIcon icon={faMoneyBill} /> Terminar Compra
-              </Link>
+              {cartProducts.length == 0 ? (
+                <Link to="/" className="btn btn-primary btnCheckout">
+                  Empezar a comprar
+                </Link>
+              ) : (
+                <>
+                  <h2>Total: ${totalAmount}</h2>
+                  <Link to="/" className="btn btn-primary btnCheckout">
+                    <FontAwesomeIcon icon={faMoneyBill} /> Terminar Compra
+                  </Link>
+                </>
+              )}
             </Col>
           </Row>
         </Card>

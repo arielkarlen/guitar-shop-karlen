@@ -8,9 +8,14 @@ const CartProvider = ({ children }) => {
   const [totalAmount, setTotalAmount] = useState(0);
 
   const addProductToCart = (product) => {
-    setCartProducts([...cartProducts, product]);
-    setTotalProduct(totalProduct + product.Qty);
-    setTotalAmount(totalAmount + product.PartialAmount);
+    let isInCart = cartProducts.find((cartItem) => cartItem.id === product.id);
+    if (!isInCart) {
+      setCartProducts([...cartProducts, product]);
+      setTotalProduct(totalProduct + product.Qty);
+      setTotalAmount(totalAmount + product.PartialAmount);
+    } else {
+      alert("el producto ya se encuentra en el carrito");
+    }
   };
 
   const data = {
