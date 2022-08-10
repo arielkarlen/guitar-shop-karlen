@@ -22,7 +22,7 @@ const ItemContainer = ({ titleSection }) => {
         setTimeout(function () {
           setListProducts(res);
           setIsLoading(false);
-        }, 3000);
+        }, 2000);
       })
 
       .catch((error) => {

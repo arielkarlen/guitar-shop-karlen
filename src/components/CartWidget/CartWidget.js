@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Offcanvas, Row, Col, Button } from "react-bootstrap";
+import { Offcanvas, Row, Col, Button, Badge } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CartContext } from "../../context/CartContext";
 
@@ -28,8 +28,13 @@ const CartWidget = () => {
 
   // const [totalPrice, setTotalPrice] = useState(0);
 
-  const { cartProducts } = useContext(CartContext);
-
+  const {
+    cartProducts,
+    totalProduct,
+    setTotalProduct,
+    totalAmount,
+    setTotalAmount,
+  } = useContext(CartContext);
   const [reLoad, setReload] = useState(false);
 
   useEffect(() => {
@@ -39,12 +44,41 @@ const CartWidget = () => {
   return (
     <>
       <FontAwesomeIcon icon={faCartShopping} onClick={handleShow} />
-      <Offcanvas show={show} onHide={handleClose} placement="end">
+      {totalProduct == 0 ? "" : <Badge bg="secondary">{totalProduct}</Badge>}
+
+      <Offcanvas
+        show={show}
+        onHide={handleClose}
+        placement="end"
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        }}
+      >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Mi carrito</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Row className="cartContent">
+            {cartProducts.length == 0 ? (
+              <>
+                <h2 className="text-center">No hay productos en el carrito</h2>
+                <div className="iconCart text-center">
+                  <FontAwesomeIcon icon={faCartShopping} />
+                </div>
+                <Link
+                  to="/"
+                  className="btn btn-primary btnCheckout"
+                  onClick={() => {
+                    setShow(false);
+                  }}
+                >
+                  Empezar a comprar
+                </Link>
+              </>
+            ) : (
+              ""
+            )}
             {cartProducts.map((product, index) => {
               return (
                 <>
@@ -60,11 +94,18 @@ const CartWidget = () => {
                       <p>
                         <strong>{product.title}</strong>
                       </p>
-                      <p>Precio: ${product.price}</p>
+                      <p>
+                        {product.Qty} x ${product.price}
+                      </p>
+                      <p></p>
+                      <h4>Total: ${product.PartialAmount}</h4>
                       <a
                         onMouseDown={() => {
                           cartProducts.splice(index, 1);
                           setReload(true);
+                          setTotalProduct(totalProduct - product.Qty);
+                          setTotalAmount(totalAmount - product.PartialAmount);
+                          console.log(totalProduct);
                         }}
                         onMouseUp={() => {
                           setReload(false);
@@ -80,28 +121,40 @@ const CartWidget = () => {
             })}
           </Row>
         </Offcanvas.Body>
-        <Row id="btnsCartCheckout">
-          <Col lg={6}>
-            <Link to="/cart" className="btn btn-primary">
-              <FontAwesomeIcon icon={faMoneyBill} /> Terminar Compra
-            </Link>
-          </Col>
-          <Col lg={6}>
-            <Button
-              onMouseDown={() => {
-                cartProducts.length = 0;
-                setReload(true);
-              }}
-              onMouseUp={() => {
-                setReload(false);
-              }}
-              className="deleteItem"
-              variant="danger"
-            >
-              <FontAwesomeIcon icon={faTrashCan} /> Vaciar Carrito
-            </Button>
-          </Col>
-        </Row>
+        {cartProducts.length == 0 ? (
+          ""
+        ) : (
+          <Row id="btnsCartCheckout">
+            <h3>Total: ${totalAmount}</h3>
+            <Col lg={6}>
+              <Link
+                to="/cart"
+                className="btn btn-primary"
+                onClick={() => {
+                  setShow(false);
+                }}
+              >
+                <FontAwesomeIcon icon={faMoneyBill} /> Checkout
+              </Link>
+            </Col>
+            <Col lg={6}>
+              <Button
+                onMouseDown={() => {
+                  cartProducts.length = 0;
+                  setTotalProduct(0);
+                  setReload(true);
+                }}
+                onMouseUp={() => {
+                  setReload(false);
+                }}
+                className="deleteItem"
+                variant="danger"
+              >
+                <FontAwesomeIcon icon={faTrashCan} /> Vaciar Carrito
+              </Button>
+            </Col>
+          </Row>
+        )}
       </Offcanvas>
     </>
   );

@@ -7,7 +7,7 @@ import "./NavBar.css";
 
 const NavBar = () => {
   return (
-    <Navbar expand="lg">
+    <Navbar expand="lg" fixed="top">
       <Container>
         <Navbar.Brand href="/">
           <img src={Logo} className="img-fluid" />

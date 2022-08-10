@@ -40,6 +40,13 @@ h5 {
   font-size: 12px;
 }
 
+p {
+  font-size: 13px;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+
 /**Buttons**/
 
 .btn {
