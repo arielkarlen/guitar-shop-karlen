@@ -5,16 +5,19 @@ import "./ItemCount.css";
 
 const Itemcount = ({ stock, initial, setQuantitySelected, productData }) => {
   const { addProductToCart } = useContext(CartContext);
-  const { addQty } = useContext(CartContext);
 
-  const [itemQty, setItemQty] = useState(initial);
+  const [itemQty, setItemQty] = useState(0);
   const [alert, setAlert] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   const addItem = () => {
     itemQty >= stock
-      ? setAlert(`Stock Maximo: ${itemQty} Productos`)
-      : setItemQty(itemQty + 1);
+      ? setAlert(`Stock Maximo: ${stock} Productos`)
+      : setItemQty(
+          itemQty + 1,
+
+          console.log(productData.price)
+        );
     setDisabled(false);
   };
 
@@ -27,7 +30,10 @@ const Itemcount = ({ stock, initial, setQuantitySelected, productData }) => {
 
   const onAdd = () => {
     setQuantitySelected(itemQty);
-    addProductToCart(productData, itemQty);
+    productData["Qty"] = itemQty;
+    productData["PartialAmount"] = itemQty * productData.price;
+
+    addProductToCart(productData);
   };
 
   return (

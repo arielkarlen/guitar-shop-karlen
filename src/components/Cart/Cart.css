@@ -1,0 +1,18 @@
+#myCart {
+    margin-top: 100px;
+    padding: 50px;
+}
+
+.myCartItem {
+    border-bottom: 1px dashed #e3e3e3;
+    padding: 20px 0px;
+}
+
+#checkout {
+    text-align: center;
+}
+
+#checkout h2 {
+    font-size: 18px;
+    font-weight: bold;
+}

@@ -12,9 +12,7 @@
 }
 
 #btnsCartCheckout {
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
+    border-radius: 0 0 0.3rem 0.3rem;
     background-color: #e3e3e3;
     padding: 0px 0 20px 0;
     margin: 0;
@@ -29,4 +27,30 @@
 
 .deleteItem:hover {
     cursor: pointer;
+}
+
+.modal-footer {
+    padding: 0;
+}
+
+.modal-footer .container {
+    margin: 0;
+    padding: 0;
+}
+
+.badge {
+
+    border-radius: 50%;
+    bottom: 10px;
+    position: relative;
+    left: -5px;
+    background-color: #7e0000 !important;
+    font-size: 10px;
+}
+
+#btnsCartCheckout h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px 0 0 0;
+    text-align: center;
 }

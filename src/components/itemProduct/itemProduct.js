@@ -39,9 +39,9 @@ const ItemProduct = ({ data, action }) => {
                     <FontAwesomeIcon icon={faCheck} /> Añadido al carrito
                   </p>
                 </div>
-                <Link to="/cart" className="btn btn-primary">
+                {/* <Link to="/cart" className="btn btn-primary">
                   Terminar Compra
-                </Link>
+                </Link> */}
               </>
             )}
           </div>
