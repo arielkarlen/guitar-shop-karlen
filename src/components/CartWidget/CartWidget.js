@@ -60,7 +60,25 @@ const CartWidget = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Row className="cartContent">
-            {cartProducts.length == 0 ? "No hay productos en el carrito" : ""}
+            {cartProducts.length == 0 ? (
+              <>
+                <h2 className="text-center">No hay productos en el carrito</h2>
+                <div className="iconCart text-center">
+                  <FontAwesomeIcon icon={faCartShopping} />
+                </div>
+                <Link
+                  to="/"
+                  className="btn btn-primary btnCheckout"
+                  onClick={() => {
+                    setShow(false);
+                  }}
+                >
+                  Empezar a comprar
+                </Link>
+              </>
+            ) : (
+              ""
+            )}
             {cartProducts.map((product, index) => {
               return (
                 <>
@@ -123,6 +141,7 @@ const CartWidget = () => {
               <Button
                 onMouseDown={() => {
                   cartProducts.length = 0;
+                  setTotalProduct(0);
                   setReload(true);
                 }}
                 onMouseUp={() => {
