@@ -5,17 +5,26 @@ import Itemdetail from "../Itemdetail/Itemdetail";
 import products from "../../utils/products.mock";
 import { useParams } from "react-router-dom";
 
+import db from "../../firebaseconfig";
+import { doc, getDoc } from "firebase/firestore";
+
 const ItemDetailContainer = () => {
   const [productData, setProductData] = useState({});
   const { id } = useParams();
 
-  useEffect(() => {
-    products.some((product) => {
-      if (product.id == id) {
-        setProductData(product);
-      }
-    });
-  });
+  // useEffect(() => {
+  //   getProduct().then((res) => {
+  //     setProductData(product);
+  //   });
+  // }, [id]);
+
+  const getProduct = async () => {
+    const docRef = doc(db, "productos", id);
+    const docSnapshot = await getDoc(docRef);
+    let product = docSnapshot.data();
+    product.id = docSnapshot.id;
+    console.log(product);
+  };
 
   return (
     <>
