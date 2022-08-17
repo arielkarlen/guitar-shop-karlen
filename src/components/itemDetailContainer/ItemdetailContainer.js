@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
 
 import Itemdetail from "../Itemdetail/Itemdetail";
+import Loader from "../loader/Loader";
+
 import { useParams } from "react-router-dom";
 
 import db from "../../firebaseconfig";
@@ -10,35 +12,29 @@ import { doc, getDoc } from "firebase/firestore";
 const ItemDetailContainer = () => {
   const [productData, setProductData] = useState({});
   const { id } = useParams();
-
-  // useEffect(() => {
-  //   getProduct().then((res) => {
-  //     setProductData(product);
-  //   });
-  // }, [id]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getProduct = async () => {
     const docRef = doc(db, "productos", id);
     const docSnapshot = await getDoc(docRef);
     let product = docSnapshot.data();
     product.id = docSnapshot.id;
-    // console.log(product);
+
     return product;
   };
 
   useEffect(() => {
     getProduct().then((res) => {
       setProductData(res);
+      setIsLoading(false);
     });
   }, []);
-
-  console.log(productData);
 
   return (
     <>
       <Container id="itemContainer">
         <Row>
-          <Itemdetail productData={productData} />
+          {isLoading ? <Loader /> : <Itemdetail productData={productData} />}
         </Row>
       </Container>
     </>

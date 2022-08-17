@@ -31,6 +31,7 @@ const ItemContainer = ({ titleSection }) => {
   useEffect(() => {
     getProducts().then((res) => {
       setListProducts(res);
+      setIsLoading(false);
     });
   }, []);
 
@@ -39,11 +40,11 @@ const ItemContainer = ({ titleSection }) => {
       <Container id="itemContainer">
         <h1>{category} </h1>
         <Row>
-          {/* {isLoading ? (
+          {isLoading ? (
             <Loader />
-          ) : ( */}
-          <ItemList dataProducts={listProducts} category={category} />
-          {/* )} */}
+          ) : (
+            <ItemList dataProducts={listProducts} category={category} />
+          )}
         </Row>
       </Container>
     </>
