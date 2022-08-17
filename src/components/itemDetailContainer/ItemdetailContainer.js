@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
 
 import Itemdetail from "../Itemdetail/Itemdetail";
-import products from "../../utils/products.mock";
 import { useParams } from "react-router-dom";
 
 import db from "../../firebaseconfig";
@@ -23,8 +22,17 @@ const ItemDetailContainer = () => {
     const docSnapshot = await getDoc(docRef);
     let product = docSnapshot.data();
     product.id = docSnapshot.id;
-    console.log(product);
+    // console.log(product);
+    return product;
   };
+
+  useEffect(() => {
+    getProduct().then((res) => {
+      setProductData(res);
+    });
+  }, []);
+
+  console.log(productData);
 
   return (
     <>

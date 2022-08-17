@@ -15,30 +15,22 @@ const ItemContainer = ({ titleSection }) => {
 
   const { category } = useParams();
 
-  // const getProduct = new Promise((resolve, reject) => {
-  //   resolve(products);
-  // });
-
   const getProducts = async () => {
     const productcollection = collection(db, "productos");
     const productSnapshot = await getDocs(productcollection);
     const productList = productSnapshot.docs.map((doc) => {
       let product = doc.data();
       product.id = doc.id;
-      // console.log(product);
+
       return product;
-      // console.log(doc.data());
-      // console.log(doc.id);
     });
-    // console.log(productList);
+
     return productList;
   };
 
   useEffect(() => {
     getProducts().then((res) => {
-      console.log("Respuesta:", res);
       setListProducts(res);
-      console.log("Produxctos :", listProducts);
     });
   }, []);
 
