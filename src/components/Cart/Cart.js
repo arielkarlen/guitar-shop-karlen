@@ -1,5 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Row, Col, Button, Card, Container } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Button,
+  Card,
+  Container,
+  Modal,
+  Form,
+} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CartContext } from "../../context/CartContext";
 import "./Cart.css";
@@ -9,6 +17,10 @@ import {
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+
+import db from "../../firebaseconfig";
+import { collection, addDoc } from "firebase/firestore";
+
 const MyCart = () => {
   const {
     cartProducts,
@@ -21,11 +33,52 @@ const MyCart = () => {
 
   const [reLoad, setReload] = useState(false);
 
+  const [order, setOrder] = useState({
+    items: cartProducts.map((product) => {
+      return {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        qty: product.Qty,
+      };
+    }),
+    buyer: {},
+    date: new Date().toLocaleString(),
+    total: totalAmount,
+  });
+
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+  });
+
+  const [success, setSuccess] = useState();
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     setReload(false);
   }, []);
 
-  console.log(cartProducts);
+  const submitData = (e) => {
+    e.preventDefault();
+    console.log("Orden para enviar: ", { ...order, buyer: formData });
+
+    pushData({ ...order, buyer: formData });
+  };
+
+  const pushData = async (newOrder) => {
+    const collectionOrder = collection(db, "ordenes");
+    const orderDoc = await addDoc(collectionOrder, newOrder);
+    setSuccess(orderDoc.id);
+    console.log("Orden generada ", orderDoc);
+  };
 
   return (
     <>
@@ -97,15 +150,75 @@ const MyCart = () => {
               ) : (
                 <>
                   <h2>Total: ${totalAmount}</h2>
-                  <Link to="/" className="btn btn-primary btnCheckout">
+
+                  <Button variant="primary" onClick={handleShow}>
                     <FontAwesomeIcon icon={faMoneyBill} /> Terminar Compra
-                  </Link>
+                  </Button>
                 </>
               )}
             </Col>
           </Row>
         </Card>
       </Container>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          {success ? (
+            <Modal.Title> Muchas gracias por su compra</Modal.Title>
+          ) : (
+            <Modal.Title>Finalizar compra</Modal.Title>
+          )}
+        </Modal.Header>
+        <Modal.Body>
+          {success ? (
+            <Row>
+              <h2>
+                Se le envio un mail a su correo con los detalles de su compra
+              </h2>
+              <p>Nro de orden: {success}</p>
+            </Row>
+          ) : (
+            <Form onSubmit={submitData}>
+              <Form.Group className="mb-3" controlId="name">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  placeholder="Ingrese su nombre"
+                  onChange={handleChange}
+                  value={formData.name}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="email">
+                <Form.Label>Teléfono </Form.Label>
+                <Form.Control
+                  type="number"
+                  name="phone"
+                  placeholder="Ingrese su teléfono"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="phone">
+                <Form.Label>E-Mail </Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="Ingrese su Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+
+              <Button variant="primary" type="submit">
+                Pagar
+              </Button>
+            </Form>
+          )}
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

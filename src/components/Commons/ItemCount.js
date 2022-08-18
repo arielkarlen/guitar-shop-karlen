@@ -13,11 +13,7 @@ const Itemcount = ({ stock, initial, setQuantitySelected, productData }) => {
   const addItem = () => {
     itemQty >= stock
       ? setAlert(`Stock Maximo: ${stock} Productos`)
-      : setItemQty(
-          itemQty + 1,
-
-          console.log(productData.price)
-        );
+      : setItemQty(itemQty + 1);
     setDisabled(false);
   };
 
