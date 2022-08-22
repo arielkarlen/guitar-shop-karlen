@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CartContext } from "../../context/CartContext";
 import "./Cart.css";
 import {
-  faTrashCan,
+  faCircleCheck,
   faMoneyBill,
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
@@ -72,19 +72,21 @@ const MyCart = () => {
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
+    } else {
+      pushData({ ...order, buyer: formData });
     }
 
     setValidated(true);
     e.preventDefault();
-
-    pushData({ ...order, buyer: formData });
+    console.log("Orden para enviar: ", { ...order, buyer: formData });
   };
 
   const pushData = async (newOrder) => {
     const collectionOrder = collection(db, "ordenes");
     const orderDoc = await addDoc(collectionOrder, newOrder);
     setSuccess(orderDoc.id);
-    console.log("Orden generada ", orderDoc);
+    cartProducts.length = 0;
+    setTotalProduct(0);
   };
 
   return (
@@ -190,14 +192,25 @@ const MyCart = () => {
         </Modal.Header>
         <Modal.Body>
           {success ? (
-            <Row>
+            <Row id="checkoutEnd">
+              <FontAwesomeIcon icon={faCircleCheck} />
               <h2>
                 Se le envio un mail a su correo con los detalles de su compra
               </h2>
               <p>Nro de orden: {success}</p>
             </Row>
           ) : (
-            <Form noValidate validated={validated} onSubmit={submitData}>
+            <Form onSubmit={submitData} noValidate validated={validated}>
+              <Row className="resumen">
+                <Col lg={6}>
+                  <h3>Subtotal: ${totalAmount}</h3>
+                  <h3>Envío: Gratis</h3>
+                </Col>
+                <Col lg={6}>
+                  <h2>Total: ${totalAmount}</h2>
+                </Col>
+              </Row>
+              <h2>Ingrese sus datos para finalizar la compra</h2>
               <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
@@ -208,6 +221,9 @@ const MyCart = () => {
                   onChange={handleChange}
                   value={formData.name}
                 />
+                <Form.Control.Feedback type="invalid">
+                  El nombre es obligatorio
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="email">
@@ -220,6 +236,9 @@ const MyCart = () => {
                   value={formData.phone}
                   onChange={handleChange}
                 />
+                <Form.Control.Feedback type="invalid">
+                  El Teléfono es obligatorio
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="phone">
@@ -232,6 +251,9 @@ const MyCart = () => {
                   value={formData.email}
                   onChange={handleChange}
                 />
+                <Form.Control.Feedback type="invalid">
+                  Por favor, ingrese un mail valido
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Button variant="primary" type="submit">
