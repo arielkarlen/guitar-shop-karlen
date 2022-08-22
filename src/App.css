@@ -203,6 +203,10 @@ nav a,
   background-color: #e3e3e3;
 }
 
+.separator {
+  border-top: 1px solid #ccc;
+}
+
 @media screen and (width: 1920px) {
   .card {
 
