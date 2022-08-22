@@ -4,7 +4,7 @@
 }
 
 #myCart .btn-primary {
-    margin: 0;
+    margin: 20px 0 0 0;
 }
 
 .myCartItem {
@@ -25,4 +25,27 @@
     color: #ebebeb;
     font-size: 180px;
     margin-top: 70px;
+}
+
+#checkout {
+    text-align: center;
+    background-color: #f7f7f7;
+    padding: 10px;
+}
+
+#checkout h1,
+#checkout h2 {
+    text-align: left;
+}
+
+.subTotal h3 {
+    font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.subTotal {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }

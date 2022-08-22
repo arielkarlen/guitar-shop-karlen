@@ -54,6 +54,7 @@ const MyCart = () => {
   });
 
   const [success, setSuccess] = useState();
+  const [validated, setValidated] = useState(false);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -67,8 +68,14 @@ const MyCart = () => {
   }, []);
 
   const submitData = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    setValidated(true);
     e.preventDefault();
-    console.log("Orden para enviar: ", { ...order, buyer: formData });
 
     pushData({ ...order, buyer: formData });
   };
@@ -96,7 +103,13 @@ const MyCart = () => {
                   </div>
                 </>
               ) : (
-                ""
+                <Row>
+                  <h2>Tu carrito</h2>
+                  <p>
+                    Tenes {totalProduct} productos por un total de $
+                    <strong>{totalAmount}</strong>
+                  </p>
+                </Row>
               )}
               {cartProducts.map((product, index) => {
                 return (
@@ -109,18 +122,19 @@ const MyCart = () => {
                           alt={product.title}
                         />
                       </Col>
-                      <Col lg={7}>
+                      <Col lg={6}>
                         <p>
                           <strong>{product.title}</strong>
                         </p>
                         <p>
                           <strong>Cantidad:</strong> {product.Qty}
                         </p>
-                        <p>
-                          <strong>Precio: </strong>${product.price}
-                        </p>
                       </Col>
-                      <Col lg={3}>
+                      <Col lg={4}>
+                        <p>
+                          <strong>Precio unitario: </strong>${product.price}
+                        </p>
+                        <h4>Subtotal: ${product.PartialAmount}</h4>
                         <a
                           onMouseDown={() => {
                             cartProducts.splice(index, 1);
@@ -133,29 +147,34 @@ const MyCart = () => {
                           }}
                           className="deleteItem"
                         >
-                          <FontAwesomeIcon icon={faTrashCan} /> Eliminar
+                          <FontAwesomeIcon icon={["fal", "coffee"]} /> Eliminar
                         </a>
-                        <h4>Subtotal: ${product.PartialAmount}</h4>
                       </Col>
                     </Row>
                   </>
                 );
               })}
             </Col>
-            <Col lg={{ span: 3, offset: 2 }} id="checkout">
-              {cartProducts.length == 0 ? (
-                <Link to="/" className="btn btn-primary btnCheckout">
-                  Empezar a comprar
-                </Link>
-              ) : (
-                <>
-                  <h2>Total: ${totalAmount}</h2>
-
-                  <Button variant="primary" onClick={handleShow}>
-                    <FontAwesomeIcon icon={faMoneyBill} /> Terminar Compra
-                  </Button>
-                </>
-              )}
+            <Col lg={{ span: 4, offset: 1 }}>
+              <Row id="checkout">
+                {cartProducts.length == 0 ? (
+                  <Link to="/" className="btn btn-primary btnCheckout">
+                    Empezar a comprar
+                  </Link>
+                ) : (
+                  <>
+                    <h1>Resumen</h1>
+                    <div className="subTotal">
+                      <h3>Subtotal: ${totalAmount}</h3>
+                      <h3>Envío: Gratis</h3>
+                    </div>
+                    <h2>Total: ${totalAmount}</h2>
+                    <Button variant="primary" onClick={handleShow}>
+                      <FontAwesomeIcon icon={faMoneyBill} /> Terminar Compra
+                    </Button>
+                  </>
+                )}
+              </Row>
             </Col>
           </Row>
         </Card>
@@ -178,10 +197,11 @@ const MyCart = () => {
               <p>Nro de orden: {success}</p>
             </Row>
           ) : (
-            <Form onSubmit={submitData}>
+            <Form noValidate validated={validated} onSubmit={submitData}>
               <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
+                  required
                   type="text"
                   name="name"
                   placeholder="Ingrese su nombre"
@@ -193,6 +213,7 @@ const MyCart = () => {
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Teléfono </Form.Label>
                 <Form.Control
+                  required
                   type="number"
                   name="phone"
                   placeholder="Ingrese su teléfono"
@@ -204,6 +225,7 @@ const MyCart = () => {
               <Form.Group className="mb-3" controlId="phone">
                 <Form.Label>E-Mail </Form.Label>
                 <Form.Control
+                  required
                   type="email"
                   name="email"
                   placeholder="Ingrese su Email"
