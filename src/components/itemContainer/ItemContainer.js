@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
 
-// import products from "../../utils/products.mock";
 import ItemList from "../itemList/ItemList";
 import Loader from "../loader/Loader";
 import { useParams } from "react-router-dom";

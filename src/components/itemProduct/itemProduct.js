@@ -33,16 +33,11 @@ const ItemProduct = ({ data, action }) => {
                 productData={data}
               />
             ) : (
-              <>
-                <div className="add">
-                  <p>
-                    <FontAwesomeIcon icon={faCheck} /> Añadido al carrito
-                  </p>
-                </div>
-                {/* <Link to="/cart" className="btn btn-primary">
-                  Terminar Compra
-                </Link> */}
-              </>
+              <div className="add">
+                <p>
+                  <FontAwesomeIcon icon={faCheck} /> Añadido al carrito
+                </p>
+              </div>
             )}
           </div>
         </Card.Body>

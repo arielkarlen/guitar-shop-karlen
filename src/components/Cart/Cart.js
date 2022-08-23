@@ -78,7 +78,6 @@ const MyCart = () => {
 
     setValidated(true);
     e.preventDefault();
-    console.log("Orden para enviar: ", { ...order, buyer: formData });
   };
 
   const pushData = async (newOrder) => {

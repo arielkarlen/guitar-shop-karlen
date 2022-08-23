@@ -105,7 +105,6 @@ const CartWidget = () => {
                           setReload(true);
                           setTotalProduct(totalProduct - product.Qty);
                           setTotalAmount(totalAmount - product.PartialAmount);
-                          console.log(totalProduct);
                         }}
                         onMouseUp={() => {
                           setReload(false);
