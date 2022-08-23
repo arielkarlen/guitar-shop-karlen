@@ -3,6 +3,7 @@
 Autor: Ariel A. Karlen.
 Proyecto de tienda Virtual creado en React, para curso de React de Coderhouse.
 Framework Frontend: Bootstrap
+Base de datos: Firebase
 
 ## Scripts
 
@@ -45,7 +46,20 @@ Contenedor del Detalle completo del producto
 
 ### `Commons`
 
-Componentes comunues de todo el proyecto, incluye\_
+Componentes comunues de todo el proyecto, incluye
 
 - Barra de navegacion
 - Contador para agregar o eliminar productos
+
+### `CartContext`
+
+En este archivo se han definido todas las funciones globales, tales como:
+
+- Seteo de productos agregados al carrito
+- Cantidad total de productos en el carrito
+- Montos parciales de productos
+- Monto total del carrito
+
+### `Cart`
+
+Página de Checkout. Incluye formulario para envio de orden de compra.
