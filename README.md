@@ -7,22 +7,25 @@ Base de datos: Firebase
 
 ## Scripts
 
-Scripts para levantar el proyecto en modo:
+Scripts para levantar el proyecto en modo dev
 
 ### `npm start`
 
-Levbanta la APP en Modo develop
+Levanta la APP en Modo develop
 URL [http://localhost:3000](http://localhost:3000) .
 
 ### `Api`
 
-De momento, se esta tomando singleProduct.mock.js para tomar los productos, ubicado en la carpeta src/utils
+Los datos se estan guardando en Firebase
+
+- Productos
+- Ordenes
 
 ## Componentes
 
 ### `CartWidget`
 
-Componente ded carrito de compras
+Componente de carrito de compras
 
 ### `ItemContainer`
 
@@ -46,7 +49,7 @@ Contenedor del Detalle completo del producto
 
 ### `Commons`
 
-Componentes comunues de todo el proyecto, incluye
+Componentes comunes de todo el proyecto, incluye
 
 - Barra de navegacion
 - Contador para agregar o eliminar productos
