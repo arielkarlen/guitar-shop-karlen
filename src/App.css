@@ -4,8 +4,14 @@
 
 
   --color-main: #af4417;
+  --color-secondary: #8d734a;
   --color-green: #2b7202;
   --color-red: #720227;
+  --color-btns-secondary: #4099ff;
+  --color-btns-hover: #73b4ff;
+  --color-disabled: #cce1ff;
+
+
   --main-font: 'Quicksand', sans-serif;
 
 
@@ -81,20 +87,21 @@ p {
 }
 
 .btn-primary:hover {
-  background-color: #73b4ff;
-  border-color: #73b4ff;
+  background-color: var(--color-btns-hover);
+  border-color: var(--color-btns-hover);
 }
 
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #000;
-  background-color: #cce1ff;
-  border-color: #cce1ff;
+  background-color: var(--color-disabled);
+  border-color: var(--color-disabled)
 }
 
 .btn-secondary {
-  background-color: #4099ff;
-  border-color: #4099ff;
+  background-color: var(--color-btns-secondary);
+  border-color: var(--color-btns-secondary);
+
 }
 
 .add {
@@ -211,5 +218,16 @@ nav a,
   .card {
 
     min-height: 570px;
+  }
+}
+
+@media (max-width: 700px) {
+  .card {
+
+    min-height: 440px;
+  }
+
+  div#itemContainer {
+    padding: 50px 5%;
   }
 }

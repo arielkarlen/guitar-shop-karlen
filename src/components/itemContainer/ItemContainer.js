@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
+import "./itemContainer.css";
 
 import ItemList from "../itemList/ItemList";
 import Loader from "../loader/Loader";
@@ -37,7 +38,7 @@ const ItemContainer = ({ titleSection }) => {
   return (
     <>
       <Container id="itemContainer">
-        <h1>{category} </h1>
+        <h1>{category ? category : "Todos los productos"} </h1>
         <Row>
           {isLoading ? (
             <Loader />

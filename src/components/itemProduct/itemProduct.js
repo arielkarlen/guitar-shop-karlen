@@ -11,7 +11,7 @@ const ItemProduct = ({ data, action }) => {
   const [quantitySelected, setQuantitySelected] = useState(0);
 
   return (
-    <Col lg={3}>
+    <Col lg={3} xs={6}>
       <Card>
         <Link to={`/guitars/${id}`}>
           <Card.Img variant="top" src={`../assets/${image}`} />

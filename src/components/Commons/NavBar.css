@@ -1,5 +1,28 @@
 #basic-navbar-nav a {
-    margin:0 0 0 20px;
+    margin: 0 0 0 20px;
     text-decoration: none;
     font-weight: bold;
+}
+
+.navbar-light .navbar-toggler {
+    border: none
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url(../../assets/bars-solid.svg);
+    filter: none
+}
+
+@media (max-width: 700px) {
+    div#basic-navbar-nav {
+        height: 100vh;
+    }
+
+    #basic-navbar-nav a {
+
+        text-align: center;
+        font-size: 36px;
+        padding: 30px 0;
+        margin: 0
+    }
 }

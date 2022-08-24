@@ -10,6 +10,7 @@ import CartProvider from "./context/CartContext";
 
 import "./App.css";
 import Cart from "./pages/Cart";
+import Footer from "./components/Commons/Footer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/guitars/:id" element={<Detail />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </CartProvider>
   );
