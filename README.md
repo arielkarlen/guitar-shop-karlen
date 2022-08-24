@@ -1,6 +1,6 @@
 # Guitar Shop
 
-Autor: Ariel A. Karlen.
+Autor: [https://www.linkedin.com/in/arielkarlen/](Ariel A. Karlen).
 Proyecto de tienda Virtual creado en React, para curso de React de Coderhouse.
 Framework Frontend: Bootstrap
 Base de datos: Firebase
@@ -66,3 +66,7 @@ En este archivo se han definido todas las funciones globales, tales como:
 ### `Cart`
 
 Página de Checkout. Incluye formulario para envio de orden de compra.
+
+### `Demo Gif`
+
+[https://raw.githubusercontent.com/arielkarlen/guitar-shop-karlen/master/Demo.gif](demo Gif)

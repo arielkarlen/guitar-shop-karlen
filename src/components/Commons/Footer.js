@@ -27,12 +27,12 @@ const Footer = () => {
           <Col md={6} className="text-end">
             <p>
               Desarrollado por
-              <Link
-                to="https://www.linkedin.com/in/arielkarlen/"
+              <a
+                href="https://www.linkedin.com/in/arielkarlen/"
                 target="_blank"
               >
                 <strong> Ariel Karlen </strong>
-              </Link>
+              </a>
               para Coderhouse
             </p>
           </Col>
