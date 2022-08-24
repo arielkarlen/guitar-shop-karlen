@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <>
       <h1>Últimos productos </h1>
-      <ItemContainer titleSection="Últimos productos" />;
+      <ItemContainer titleSection="Últimos productos" />
     </>
   );
 };
