@@ -69,4 +69,4 @@ Página de Checkout. Incluye formulario para envio de orden de compra.
 
 ### `Demo Gif`
 
-[demo Gif] (https://raw.githubusercontent.com/arielkarlen/guitar-shop-karlen/master/Demo.gif )
+[demo Gif](https://raw.githubusercontent.com/arielkarlen/guitar-shop-karlen/master/Demo.gif)
